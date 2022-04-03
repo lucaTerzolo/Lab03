@@ -90,20 +90,53 @@ public class FXMLController {
     		txtErrori.setText("Inserire lingua");
    			return;
    		}
+    	
+    	
     	if(cmbLingua.getValue().equals("Italiano")) {
-    		for(String s:parole)
-    			if(!dizionario.contains(s)) {
-    				txtParoleErrate.appendText(s+" \n");
+    		/*
+			int n=dizionario.size()/2;
+    		int cnt=1;
+    		for(int i=0;i<parole.length;i++) {
+    			do {
+    				if(parole[i].compareTo(dizionario.get(n))<0) {
+    					cnt++;
+    					n=(n-(int)(dizionario.size()/Math.pow(2, cnt)));
+    				}else {
+    					if(parole[i].compareTo(dizionario.get(n))>0) {
+    					cnt++;
+        				n=(int)(n+(dizionario.size()/Math.pow(2, cnt)));
+    					}else {
+    						return;
+    					}
+    				}
+    			}while(n<dizionario.size());
+    			*/
+    		int min=0;
+    		int max=dizionario.size();
+    		
+    		for(int i=0;i<parole.length;i++) {
+    			boolean trovato=false;
+    			do {
+    				if(parole[i].compareTo(dizionario.get((max-min)/2))==0) {
+    					trovato=true;
+    				}else {
+    					if(parole[i].compareTo(dizionario.get((max-min)/2))<0) {
+    						max=max-()
+    					}
+    					if(parole[i].compareTo(dizionario.get((max-min)/2))>0) {
+    						min=max-max/2;
+    					}
+    				}
+    			}while((max-min)==1);
+    			if(!trovato) {
+    				txtParoleErrate.appendText(parole[i]+"\n");
     				num++;
     			}
+    		}
     	} 
     	
     	if(cmbLingua.getValue().equals("English")) {
-    		for(String s:parole)
-    			if(!dictionary.contains(s)) {
-    				txtParoleErrate.appendText(s+" \n");
-    				num++;
-    			}
+    		
     	}
     	long end=System.currentTimeMillis();
     	txtErrori.setText("The text contains "+num+" errors");
